@@ -1,0 +1,146 @@
+<!--index.wxml-->
+
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <image src="/images/logo2.jpg" class="png" mode="widthFix"></image>
+    <view class="text-xl text-bold">
+      垃圾分类，铸就美好生活
+    </view>
+    <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+</scroll-view>
+
+<view class="cu-bar bg-white search">
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" placeholder="搜索垃圾" confirm-type="search" bindconfirm="bindconfirm" value="{{searchValue}}"></input>
+  </view>
+</view>
+
+<view class="cu-bar bg-white solid-bottom" hidden="{{result.length == 0}}">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>搜索结果
+  </view>
+</view>
+
+<view class="bg-white padding" hidden="{{result.length == 0}}">
+  <block wx:for="{{result}}" wx:key>
+    <view class="cu-capsule round margin-bottom">
+      <view wx:if="{{item.type == 1}}" >
+        <view class="cu-tag bg-red ">
+          有害
+        </view>
+        <view class="cu-tag line-red">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == 2}}" >
+        <view class="cu-tag bg-blue ">
+          可回收
+        </view>
+        <view class="cu-tag line-blue">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == 3}}">
+        <view class="cu-tag bg-brown ">
+          湿垃圾
+        </view>
+        <view class="cu-tag line-brown">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == -2}}">
+        <view class="cu-tag bg-orange ">
+          大物件
+        </view>
+        <view class="cu-tag line-orange">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:else>
+        <view class="cu-tag bg-black ">
+          干垃圾
+        </view>
+        <view class="cu-tag line-black">
+          {{item.name}}
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>
+
+
+<view class="cu-bar bg-white solid-bottom" hidden="{{result.length != 0}}">
+  <view class="action">
+    <text class="cuIcon-title text-green"></text>热门搜索
+  </view>
+</view>
+
+<view class="bg-white padding" hidden="{{result.length != 0}}">
+  <block wx:for="{{hotResult}}" wx:key>
+    <view class="cu-capsule round margin-bottom">
+      <view wx:if="{{item.type == 1}}" >
+        <view class="cu-tag bg-red ">
+          有害
+        </view>
+        <view class="cu-tag line-red">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == 2}}" >
+        <view class="cu-tag bg-blue ">
+          可回收
+        </view>
+        <view class="cu-tag line-blue">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == 3}}">
+        <view class="cu-tag bg-brown ">
+          湿垃圾
+        </view>
+        <view class="cu-tag line-brown">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:elif="{{item.type == -2}}">
+        <view class="cu-tag bg-orange ">
+          大物件
+        </view>
+        <view class="cu-tag line-orange">
+          {{item.name}}
+        </view>
+      </view>
+      <view wx:else>
+        <view class="cu-tag bg-black ">
+          干垃圾
+        </view>
+        <view class="cu-tag line-black">
+          {{item.name}}
+        </view>
+      </view>
+
+    </view>
+  </block>
+</view>
+
+
+<view class="container bg-white">
+  <view class="note-btn" bindtouchstart="showModal" bindtouchend="hideModalAndSearch">
+    <image src="/images/voice.png" width="64rpx" width="64rpx"></image>
+  </view>
+</view>
+
+<view class="cu-modal show " hidden="{{hiddenModal}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content text-grey">请说出要搜索的垃圾名称</view>
+    </view>
+
+    <view class="padding-sm">
+      <text class="text-gray text-sm">录音中....</text>
+    </view>
+  </view>
+</view>

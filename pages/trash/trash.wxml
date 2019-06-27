@@ -1,0 +1,49 @@
+
+<view class='map-box'>
+    <map
+            id="myMap"
+            latitude="{{latitude}}"
+            longitude="{{longitude}}"
+            markers="{{markers}}"
+            show-location="true"
+            show-compass="true"
+            enable-overlooking="true"
+            enable-rotate="true"
+            enable-traffic="true"
+            bindtap="clickMap"
+            bindmarkertap="clickMapMarker"
+            bindcontroltap="clickMapControl"
+            bindcallouttap="clickMapCallout"
+            bindpoitap="clickMapPoitap"
+            bindregionchange='regionchange'
+            scale='19'
+    >
+        <!-- 地图上下阴影 -->
+        <cover-image class='map-shadow-top' src='/images/map-shadow-top.png'/>
+        <cover-image class='map-shadow-btm' src='/images/map-shadow-btm.png'/>
+        <!-- 顶部横幅 -->
+        <cover-view class='top-tips'>
+            <cover-view class='top-text text-grey text-center'>🌹 有未收录的垃圾桶？点击附近带有名称的地点上报</cover-view>
+        </cover-view>
+        <!-- 中心坐标 -->
+        <cover-image class='map-icon_point' src='/images/point_in_map.png'/>
+
+        <cover-image class='map-icon map-icon_reset' src='/images/reset.png' bindtap='moveToLocation'/>
+    </map>
+
+</view>
+
+
+<form bindsubmit="formSubmit" report-submit="true" hidden="{{hiddenAddForm==0}}">
+    <view class="cu-form-group ">
+        <input placeholder="位置名称" name="name" value="{{newTrashCanPoint.name}}" disabled="true"></input>
+    </view>
+    <view class="cu-form-group ">
+        <input placeholder="描述备注" name="marker" maxlength="15" focus="true" value="" ></input>
+    </view>
+
+    <view class='main-btn'>
+        <button class='main-text' form-type="submit">确认上报</button>
+    </view>
+</form>
+
