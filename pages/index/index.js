@@ -26,17 +26,37 @@ Page({
     hotResult: [{"name":"卫生纸","type":"4"},{"name":"西瓜皮","type":"3"},{"name":"塑料瓶","type":"2"},{"name":"毒鼠强","type":"1"}]
   },
   onShareAppMessage(e){
-
+    var openid = wx.getStorageSync("openid")
+    if (openid === "") {
+      return
+    }
+    return {
+      title: this.data.searchValue + "是什么垃圾？快进来瞅瞅",
+      path:'/pages/index/index?from_open_id='+ openid + "&search=" + this.data.searchValue, //这里拼接需要携带的参数
+      //imageUrl:'https://mmbiz.qlogo.cn/mmbiz_png/UUn1BJoX4Um8bukS5gcAibupMLSHqwibwMenpKRYXsZa3s0f0SYnSWpKpBJB0ABeAQ2exAJvhvWaqAoTA31htrzg/0?wx_fmt=png',
+      success:function(res){
+        console.log("转发成功"+res);
+      }
+    }
   },
-  onLoad: function () {
+  onLoad: function (e) {
     //注册停止录音事件
     recorderManager.onStop(this.recorderStop);
-
     var openid = wx.getStorageSync("openid")
     if (openid !== "") {
       this.hotSearch()
+      //检查接收转发携带参数
+      if (e.search) {
+        console.log("bindconfirm",e)
+        this.bindconfirm({detail:{value:e.search}})
+      }
       return
     }
+    wx.showToast({
+      title:"登录中...",
+      icon:"loading",
+      duration:10000
+    })
     //登录
     var that = this
     wx.login({
@@ -45,11 +65,26 @@ Page({
         wx.request({
           url: Api.wxLogin({code: res.code}),
           success: function(res) {
-            console.log(res.data)
+            wx.hideToast()
+            if (res.data.debug_message) {
+              wx.showToast({
+                title:"登录失败,快去反馈:" + res.data.debug_message,
+                icon:"none",
+                duration:3000
+              })
+              return
+            }
             wx.setStorageSync("openid", res.data.openid)
             that.hotSearch()
+
+            //检查接收转发携带参数
+            if (e.search) {
+              console.log("bindconfirm",e)
+              that.bindconfirm({detail:{value:e.search}})
+            }
           },
           fail(res) {
+            wx.hideToast()
             wx.showToast({
               title:"服务器出错",
               icon:"none",
@@ -86,6 +121,24 @@ Page({
     wx.request({
       url: Api.search({"name":e.detail.value}),
       success(res) {
+        wx.hideToast()
+        if (res.data.debug_message) {
+          wx.showToast({
+            title:"搜索失败,快去反馈:" + res.data.debug_message,
+            icon:"none",
+            duration:3000
+          })
+          return
+        }
+        if (res.data.length === 0) {
+          wx.showToast({
+            title:"没有搜到,换个名字再试试" ,
+            icon:"none",
+            duration:2000
+          })
+          return
+        }
+
         that.setData({
           searchValue:e.detail.value,
           result:res.data

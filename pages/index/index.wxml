@@ -21,6 +21,10 @@
   <view class="action">
     <text class="cuIcon-title text-green"></text>搜索结果
   </view>
+
+  <view class="action">
+    <button class="cu-btn bg-white shadow text-green"  open-type="share" >分享</button>
+  </view>
 </view>
 
 <view class="bg-white padding" hidden="{{result.length == 0}}">
@@ -75,6 +79,10 @@
 <view class="cu-bar bg-white solid-bottom" hidden="{{result.length != 0}}">
   <view class="action">
     <text class="cuIcon-title text-green"></text>热门搜索
+  </view>
+
+  <view class="action">
+    <button class="cu-btn bg-white shadow "  open-type="contact" session-from="weapp">反馈</button>
   </view>
 </view>
 
@@ -144,3 +152,4 @@
     </view>
   </view>
 </view>
+
