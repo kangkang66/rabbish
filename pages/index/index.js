@@ -200,7 +200,7 @@ Page({
         let datas = JSON.parse(response.data)
         if (datas.debug_message) {
           wx.showToast({
-            title:"搜索失败:"+datas.debug_message,
+            title:"语音识别失败，文字输入搜索试试",
             icon:"none"
           })
           return
