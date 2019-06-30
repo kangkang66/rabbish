@@ -1,5 +1,4 @@
 <!--index.wxml-->
-
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
     <image src="/images/logo2.jpg" class="png" mode="widthFix"></image>
@@ -10,12 +9,17 @@
   </view>
 </scroll-view>
 
-<view class="cu-bar bg-white search">
-  <view class="search-form round">
-    <text class="cuIcon-search"></text>
-    <input type="text" placeholder="搜索垃圾" confirm-type="search" bindconfirm="bindconfirm" value="{{searchValue}}"></input>
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="cu-bar bg-white search">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索垃圾" confirm-type="search" bindconfirm="bindconfirm" name="search" value="{{searchValue}}"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-green shadow-blur round" form-type="submit">搜索</button>
+    </view>
   </view>
-</view>
+</form>
 
 <view class="cu-bar bg-white solid-bottom" hidden="{{result.length == 0}}">
   <view class="action">
@@ -70,7 +74,6 @@
           {{item.name}}
         </view>
       </view>
-
     </view>
   </block>
 </view>
@@ -135,7 +138,7 @@
 </view>
 
 
-<view class="container bg-white">
+<view class="container bg-white" >
   <view class="note-btn" bindtouchstart="showModal" bindtouchend="hideModalAndSearch">
     <image src="/images/voice.png" width="64rpx" width="64rpx"></image>
   </view>
@@ -152,4 +155,3 @@
     </view>
   </view>
 </view>
-

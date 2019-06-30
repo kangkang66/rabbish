@@ -23,20 +23,24 @@ Page({
     searchValue:"",
     audio:"",
     result:[],
-    hotResult: [{"name":"卫生纸","type":"4"},{"name":"西瓜皮","type":"3"},{"name":"塑料瓶","type":"2"},{"name":"毒鼠强","type":"1"}]
+    hotResult: [{"name":"卫生纸","type":"4"},{"name":"西瓜皮","type":"3"},{"name":"塑料瓶","type":"2"},{"name":"毒鼠强","type":"1"}],
+    shareText: ["是什么垃圾？快进来瞅瞅",  "没想到是这种垃圾，千万别搞错了", "表示在座的和我都是这种垃圾", "是哪类垃圾？进来说话告诉你", "这浓眉大眼的东西竟是这种垃圾"]
   },
   onShareAppMessage(e){
     var openid = wx.getStorageSync("openid")
     if (openid === "") {
       return
     }
+    var shareText = this.data.shareText
+    var randNum = Math.floor(Math.random() * Math.floor(shareText.length))
+    var text = "是什么垃圾？快进来瞅瞅"
+    if (shareText[randNum]) {
+      text = shareText[randNum]
+    }
+
     return {
-      title: this.data.searchValue + "是什么垃圾？快进来瞅瞅",
+      title: this.data.searchValue + text,
       path:'/pages/index/index?from_open_id='+ openid + "&search=" + this.data.searchValue, //这里拼接需要携带的参数
-      //imageUrl:'https://mmbiz.qlogo.cn/mmbiz_png/UUn1BJoX4Um8bukS5gcAibupMLSHqwibwMenpKRYXsZa3s0f0SYnSWpKpBJB0ABeAQ2exAJvhvWaqAoTA31htrzg/0?wx_fmt=png',
-      success:function(res){
-        console.log("转发成功"+res);
-      }
     }
   },
   onLoad: function (e) {
@@ -47,8 +51,7 @@ Page({
       this.hotSearch()
       //检查接收转发携带参数
       if (e.search) {
-        console.log("bindconfirm",e)
-        this.bindconfirm({detail:{value:e.search}})
+        this.searchService({name:e.search})
       }
       return
     }
@@ -61,9 +64,14 @@ Page({
     var that = this
     wx.login({
       success (res) {
+        //参数
+        var params = {code: res.code}
+        if (e.from_open_id) {
+          params["inviter"] = e.from_open_id
+        }
         //请求后端登录
         wx.request({
-          url: Api.wxLogin({code: res.code}),
+          url: Api.wxLogin(params),
           success: function(res) {
             wx.hideToast()
             if (res.data.debug_message) {
@@ -79,8 +87,7 @@ Page({
 
             //检查接收转发携带参数
             if (e.search) {
-              console.log("bindconfirm",e)
-              that.bindconfirm({detail:{value:e.search}})
+              that.searchService({name:e.search})
             }
           },
           fail(res) {
@@ -109,8 +116,23 @@ Page({
       }
     })
   },
-  bindconfirm(e){
-    if (e.detail.value==="" || e.detail.value===this.data.searchValue){
+  formSubmit(e) {
+    console.log(e)
+    var params = {
+      name:e.detail.value.search,
+      form_id:e.detail.formId
+    }
+    this.searchService(params)
+  },
+  bindconfirm(e) {
+    console.log(e)
+    var params = {
+      name:e.detail.value
+    }
+    this.searchService(params)
+  },
+  searchService(params){
+    if (params.name==="" || params.name===this.data.searchValue){
       return
     }
     wx.showToast({
@@ -119,7 +141,7 @@ Page({
     })
     var that = this
     wx.request({
-      url: Api.search({"name":e.detail.value}),
+      url: Api.search(params),
       success(res) {
         wx.hideToast()
         if (res.data.debug_message) {
@@ -140,7 +162,7 @@ Page({
         }
 
         that.setData({
-          searchValue:e.detail.value,
+          searchValue:params.name,
           result:res.data
         })
         wx.hideToast()
@@ -148,6 +170,14 @@ Page({
     })
   },
   showModal(e) {
+    wx.vibrateLong({
+      success:function (res) {
+        console.log(res)
+      },
+      fail:function (res) {
+        console.log(res)
+      }
+    })
     this.setData({
       hiddenModal: false
     })

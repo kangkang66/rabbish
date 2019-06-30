@@ -73,7 +73,7 @@ map,.mapBox{
   margin-left: -70rpx;
   width: 140rpx;
   height: 140rpx;
-  background: #006eff;
+  background: #39b54a;
   border-radius: 50%;
   display: flex;
   justify-content: center;

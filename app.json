@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/trash/trash"
   ],
+  "requiredBackgroundModes": ["audio"],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",
     "navigationBarTitleText": "Color UI",
