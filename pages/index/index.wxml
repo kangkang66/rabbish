@@ -3,7 +3,7 @@
   <view class="UCenter-bg">
     <image src="/images/logo2.jpg" class="png" mode="widthFix"></image>
     <view class="text-xl text-bold">
-      垃圾分类，铸就美好生活
+      快丢吧，垃圾分类不用愁
     </view>
     <image src="https://image.weilanwl.com/gif/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
@@ -13,7 +13,7 @@
   <view class="cu-bar bg-white search">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="搜索垃圾" confirm-type="search" bindconfirm="bindconfirm" name="search" value="{{searchValue}}"></input>
+      <input type="text" placeholder="请输入垃圾名称，如“西瓜皮”" confirm-type="search" bindconfirm="bindconfirm" name="search" value="{{searchValue}}"></input>
     </view>
     <view class="action">
       <button class="cu-btn bg-green shadow-blur round" form-type="submit">搜索</button>
@@ -27,7 +27,7 @@
   </view>
 
   <view class="action">
-    <button class="cu-btn bg-white shadow text-green"  open-type="share" >分享</button>
+    <button class="cu-btn bg-green shadow round"  open-type="share" >分享</button>
   </view>
 </view>
 
@@ -85,7 +85,7 @@
   </view>
 
   <view class="action">
-    <button class="cu-btn bg-white shadow "  open-type="contact" session-from="weapp">反馈</button>
+    <button class="cu-btn  round line-green"  open-type="share" >分享</button>
   </view>
 </view>
 
@@ -157,7 +157,7 @@
 </view>
 
 
-<view class="solid-bottom text-sm text-center padding">
-  <text class="text-grey">请说出垃圾名称，例如“西瓜皮”，如识别失败也可文字输入查询</text>
+<view class="solid-bottom text-xs text-center padding">
+  <text class="text-grey">长按说出垃圾名称，例如“西瓜皮”，或者文字输入查询</text>
 </view>
 

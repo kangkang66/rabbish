@@ -38,6 +38,10 @@ Page({
       text = shareText[randNum]
     }
 
+    if (this.data.searchValue === "") {
+      text = "太牛了！没想到垃圾分类还能这么玩"
+    }
+
     return {
       title: this.data.searchValue + text,
       path:'/pages/index/index?from_open_id='+ openid + "&search=" + this.data.searchValue, //这里拼接需要携带的参数
