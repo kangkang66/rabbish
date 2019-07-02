@@ -65,10 +65,25 @@ map,.mapBox{
   background: linear-gradient(to top, rgba(255,255,255,1) 30%, rgba(255,255,255,0));
   z-index: 900;
 }
+.note-btn2 {
+  position: fixed;
+  bottom: 8rpx;
+  left: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.note-btn3 {
+  position: fixed;
+  top: 10%;
+  right: 1%;
+}
 
 .note-btn {
   position: fixed;
-  bottom: 40rpx;
+  bottom: 60rpx;
   left: 50%;
   margin-left: -70rpx;
   width: 140rpx;

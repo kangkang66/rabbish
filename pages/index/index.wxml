@@ -13,7 +13,7 @@
   <view class="cu-bar bg-white search">
     <view class="search-form round">
       <text class="cuIcon-search"></text>
-      <input type="text" placeholder="请输入垃圾名称，如“西瓜皮”" confirm-type="search" bindconfirm="bindconfirm" name="search" value="{{searchValue}}"></input>
+      <input type="text" placeholder="输入垃圾名称" confirm-type="search" bindconfirm="bindconfirm" name="search" value="{{searchValue}}"></input>
     </view>
     <view class="action">
       <button class="cu-btn bg-green shadow-blur round" form-type="submit">搜索</button>
@@ -76,6 +76,25 @@
       </view>
     </view>
   </block>
+
+  <block wx:if:="{{result.length > 0}}">
+    <view class="text-xs" hidden="{{result[0].type != 1}}">
+      <text class="text-grey">知识百科：<text class="text-bold">有害垃圾</text>是指对人体或环境具有危害的垃圾。</text>
+    </view>
+
+    <view class="text-xs" hidden="{{result[0].type != 2}}">
+      <text class="text-grey">温馨提示：<text class="text-bold">可回收垃圾</text>可以存放多了卖废品赚钱呦。</text>
+    </view>
+
+    <view class="text-xs" hidden="{{result[0].type != 3}}">
+      <text class="text-grey">知识百科：<text class="text-bold">湿垃圾</text>主要为厨余垃圾、果皮等食物残渣。</text>
+    </view>
+
+    <view class="text-xs" hidden="{{result[0].type != 4}}">
+      <text class="text-grey">知识百科：<text class="text-bold">干垃圾</text>指除可回收,有害,湿垃圾外的其它垃圾。</text>
+    </view>
+  </block>
+
 </view>
 
 
@@ -157,7 +176,13 @@
 </view>
 
 
-<view class="solid-bottom text-xs text-center padding">
-  <text class="text-grey">长按说出垃圾名称，例如“西瓜皮”，或者文字输入查询</text>
+<view class=" text-xs text-center note-btn2">
+  <text class="text-grey">长按说出垃圾名称，例如“西瓜皮”</text>
 </view>
 
+
+<view class=" text-xs text-center note-btn3">
+  <button class="cu-btn block line-white text-bold round sm">
+    <text class="cuIcon-upload"></text>加到我的小程序
+  </button>
+</view>
