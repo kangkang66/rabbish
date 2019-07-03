@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -55,6 +55,20 @@
 					"pathName": "pages/index/index",
 					"query": "from_open_id=123456&search=西瓜皮",
 					"scene": 1011
+				},
+				{
+					"id": -1,
+					"name": "测验",
+					"pathName": "pages/exam/exam",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "试卷",
+					"pathName": "pages/exam/paper/paper",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

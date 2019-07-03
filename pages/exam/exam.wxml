@@ -1,0 +1,33 @@
+<scroll-view scroll-y class="scrollPage">
+    <image src='/images/exam.jpg' mode='widthFix' class='response'></image>
+</scroll-view>
+
+<view class="cu-bar bg-white solid-bottom ">
+    <view class="action">
+        <text class="cuIcon-title text-blue"></text>知识测试
+    </view>
+
+    <view class="action">
+        <button class="cu-btn  round line-blue" >英雄榜</button>
+    </view>
+</view>
+
+<view class="margin-top text-center">
+    <view class="padding-lr bg-white">
+        <view class="solid-bottom padding">
+            <text class="text-sm text-bold">王大爷今年80岁了，也积极参与垃圾分类行动中，但老眼昏花，需要有位知识渊博的同学协助他完成垃圾分类，这人是你吗？</text>
+        </view>
+
+        <view class="flex solid-bottom padding justify-around">
+            <view>
+                <button class="cu-btn  round line-brown"  open-type="share">找人帮他</button>
+            </view>
+            <view>
+                <navigator open-type="navigate" hover-class='none' url="/pages/exam/paper/paper" >
+                    <button class="cu-btn  round line-blue">我来帮他</button>
+                </navigator>
+            </view>
+        </view>
+    </view>
+</view>
+

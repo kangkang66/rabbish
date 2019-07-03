@@ -1,0 +1,48 @@
+
+<view class="cu-bar bg-white solid-bottom ">
+    <view class="action">
+        <text class="cuIcon-title text-blue"></text>共10题
+    </view>
+</view>
+
+
+<block wx:for="{{question}}" wx:key>
+    <view class="padding" hidden="{{num != index+1}}">
+        <radio-group bindchange="radioChange" class="radio-group">
+            <view class="padding-lr bg-white">
+                <view class="solid-bottom padding text-center">
+                    <text class="">题目{{index+1}}：开始减肥了就散了发生的发生？</text>
+                </view>
+                <view class="padding">
+                    <view class="flex">
+                        <view class="flex-sub padding-sm margin-xs round bg-red light">
+                            <radio class="red " ></radio>
+                            <text class="text-sm margin-left">有害</text>
+                        </view>
+                        <view class="flex-sub padding-sm margin-xs round bg-blue light">
+                            <radio class="red " ></radio>
+                            <text class="text-sm margin-left">可回收</text>
+                        </view>
+                    </view>
+                    <view class="flex">
+                        <view class="flex-sub padding-sm margin-xs round bg-brown light">
+                            <radio class="red " ></radio>
+                            <text class="text-sm margin-left">湿垃圾</text>
+                        </view>
+                        <view class="flex-sub padding-sm margin-xs round bg-gray light">
+                            <radio class="red " ></radio>
+                            <text class="text-sm margin-left">干垃圾</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </radio-group>
+    </view>
+</block>
+
+
+<view class="flex solid-bottom padding justify-around">
+    <button class="cu-btn line-blue round padding-sm margin-xs " bindtap="preSteps">上一题</button>
+    <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num == question.length}}">下一题</button>
+    <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num != question.length}}">查看成绩</button>
+</view>

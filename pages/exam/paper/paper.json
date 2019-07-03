@@ -1,0 +1,9 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "垃圾分类中",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f3f3f3",
+  "navigationStyle": "default",
+  "enablePullDownRefresh": false
+}
