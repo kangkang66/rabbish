@@ -1,0 +1,48 @@
+<!--pages/exam/score/score.wxml-->
+<view class="bg-white padding-lr">
+    <view class="solids-bottom padding-xs flex align-center">
+        <view class="padding">
+            <text class="text-red text-bold text-lg">{{score.score}}分</text>
+        </view>
+        <view class="flex-sub text-center">
+            <view class="solid-bottom text-xl padding">
+                <text class="text-black text-bold">全国垃圾分类知识考试</text>
+            </view>
+            <view class="padding text-sm">
+                <button class="cu-btn  round line-green"  open-type="share" >和朋友比赛</button>
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<view class="padding bg-white  margin-top" wx:for="{{score.question}}" wx:key>
+    <view class="padding-lr padding {{item.user_answer == item.right_answer ? '':'bg-gray light'}}">
+        <view class="text-center">
+            <text class="text-bold">题目{{index + 1}}：{{item.title}} （{{item.user_answer}}）</text>
+            <text class="{{item.user_answer == item.right_answer ? 'cuIcon-check':'cuIcon-close'}} lg text-red"></text>
+        </view>
+        <view class="padding">
+            <view class="flex">
+                <view class="flex-sub padding-sm margin-xs round light {{item.right_answer == 'a' ? 'bg-green' : 'bg-red'}}">
+                    <text class="text-sm margin-left">a: {{item.a}}</text>
+                </view>
+                <view class="flex-sub padding-sm margin-xs round light {{item.right_answer == 'b' ? 'bg-green' : 'bg-red'}}">
+                    <text class="text-sm margin-left">b: {{item.b}}</text>
+                </view>
+            </view>
+            <view class="flex">
+                <view class="flex-sub padding-sm margin-xs round light {{item.right_answer == 'c' ? 'bg-green' : 'bg-red'}}">
+                    <text class="text-sm margin-left">c: {{item.c}}</text>
+                </view>
+                <view class="flex-sub padding-sm margin-xs round light {{item.right_answer == 'd' ? 'bg-green' : 'bg-red'}}">
+                    <text class="text-sm margin-left">d: {{item.d}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="padding">
+            <text class="text-sm">解释：{{item.intro}}</text>
+        </view>
+    </view>
+</view>
+

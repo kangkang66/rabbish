@@ -48,6 +48,8 @@ Page({
     }
   },
   onLoad: function (e) {
+    console.log(e)
+
     //注册停止录音事件
     recorderManager.onStop(this.recorderStop);
     var openid = wx.getStorageSync("openid")
@@ -56,6 +58,14 @@ Page({
       //检查接收转发携带参数
       if (e.search) {
         this.searchService({name:e.search})
+      }
+      if (e.exam_id) {
+        wx.reportAnalytics('from_exam', {
+          openid: openid,
+        });
+        wx.switchTab({
+          url:"/pages/exam/exam"
+        })
       }
       return
     }
@@ -88,10 +98,18 @@ Page({
             }
             wx.setStorageSync("openid", res.data.openid)
             that.hotSearch()
-
             //检查接收转发携带参数
             if (e.search) {
               that.searchService({name:e.search})
+            }
+            //跳转到考试页面
+            if (e.exam_id) {
+              wx.reportAnalytics('from_exam', {
+                openid: res.data.openid,
+              });
+              wx.switchTab({
+                url:"/pages/exam/exam"
+              })
             }
           },
           fail(res) {

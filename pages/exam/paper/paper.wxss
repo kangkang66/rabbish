@@ -1,5 +1,5 @@
 /* pages/exam/paper/paper.wxss */
-
+@import "../../../colorui/animation.wxss";
 .radio-group {
     width: 100%;
 }

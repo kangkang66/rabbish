@@ -1,66 +1,33 @@
 // pages/exam/exam.js
+var Api = require('../../utils/api.js');
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    exam : []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
+    var that = this
+    wx.request({
+      url:Api.exam(),
+      success(res) {
+        that.setData({
+          exam : res.data
+        })
+      }
+    })
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShareAppMessage: function (e) {
+    console.log(e)
+    var openid = wx.getStorageSync("openid")
+    return {
+      title: "你的朋友在寻求帮助，快来帮他",
+      path:'/pages/index/index?from_open_id='+ openid + "&exam_id=" + e.target.dataset.examId, //这里拼接需要携带的参数
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  rank (e) {
+    wx.reportAnalytics('rank_button', {
+      click: 1,
+    });
   }
 })

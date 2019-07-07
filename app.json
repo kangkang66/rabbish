@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/trash/trash",
     "pages/exam/exam",
-    "pages/exam/paper/paper"
+    "pages/exam/paper/paper",
+    "pages/exam/score/score"
   ],
   "requiredBackgroundModes": [
     "audio"

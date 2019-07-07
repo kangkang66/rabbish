@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.1",
+	"libVersion": "2.7.3",
 	"appid": "wx803ae29f7e2a7934",
 	"projectname": "rubbish",
 	"debugOptions": {
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -68,6 +68,12 @@
 					"name": "试卷",
 					"pathName": "pages/exam/paper/paper",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "score",
+					"pathName": "pages/exam/score/score",
 					"scene": null
 				}
 			]

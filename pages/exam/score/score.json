@@ -1,0 +1,9 @@
+{
+  "usingComponents": {},
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "成绩",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f3f3f3",
+  "navigationStyle": "default",
+  "enablePullDownRefresh": false
+}

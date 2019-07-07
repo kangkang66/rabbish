@@ -1,48 +1,48 @@
-
 <view class="cu-bar bg-white solid-bottom ">
     <view class="action">
-        <text class="cuIcon-title text-blue"></text>共10题
+        <text class="cuIcon-title text-blue"></text>共{{question.length}}题
     </view>
 </view>
 
+<form bindsubmit="formSubmit" report-submit="true">
+    <block wx:for="{{question}}" wx:key>
+        <view class="padding bg-white  animation-reverse {{animation}}" hidden="{{num != index+1}}" >
+            <radio-group bindchange="radioChange" class="radio-group" data-question-id="{{item.qid}}">
+                <view class="padding-lr bg-white">
+                    <view class="text-center">
+                        <text class="">题目{{index+1}}：{{item.title}}</text>
+                    </view>
+                    <view class="padding">
+                        <view class="flex">
+                            <view class="flex-sub padding-sm margin-xs round bg-red light">
+                                <radio class="red " value="a"></radio>
+                                <text class="text-sm margin-left">{{item.a}}</text>
+                            </view>
+                            <view class="flex-sub padding-sm margin-xs round bg-blue light">
+                                <radio class="red " value="b"></radio>
+                                <text class="text-sm margin-left">{{item.b}}</text>
+                            </view>
+                        </view>
+                        <view class="flex">
+                            <view class="flex-sub padding-sm margin-xs round bg-brown light">
+                                <radio class="red " value="c"></radio>
+                                <text class="text-sm margin-left">{{item.c}}</text>
+                            </view>
+                            <view class="flex-sub padding-sm margin-xs round bg-gray light">
+                                <radio class="red " value="d"></radio>
+                                <text class="text-sm margin-left">{{item.d}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </radio-group>
+        </view>
+    </block>
 
-<block wx:for="{{question}}" wx:key>
-    <view class="padding" hidden="{{num != index+1}}">
-        <radio-group bindchange="radioChange" class="radio-group">
-            <view class="padding-lr bg-white">
-                <view class="solid-bottom padding text-center">
-                    <text class="">题目{{index+1}}：开始减肥了就散了发生的发生？</text>
-                </view>
-                <view class="padding">
-                    <view class="flex">
-                        <view class="flex-sub padding-sm margin-xs round bg-red light">
-                            <radio class="red " ></radio>
-                            <text class="text-sm margin-left">有害</text>
-                        </view>
-                        <view class="flex-sub padding-sm margin-xs round bg-blue light">
-                            <radio class="red " ></radio>
-                            <text class="text-sm margin-left">可回收</text>
-                        </view>
-                    </view>
-                    <view class="flex">
-                        <view class="flex-sub padding-sm margin-xs round bg-brown light">
-                            <radio class="red " ></radio>
-                            <text class="text-sm margin-left">湿垃圾</text>
-                        </view>
-                        <view class="flex-sub padding-sm margin-xs round bg-gray light">
-                            <radio class="red " ></radio>
-                            <text class="text-sm margin-left">干垃圾</text>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </radio-group>
+
+    <view class="flex solid-bottom padding justify-around">
+        <button class="cu-btn line-blue round padding-sm margin-xs " bindtap="preSteps">上一题</button>
+        <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num == question.length}}">下一题</button>
+        <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num != question.length}}" form-type="submit">结束答题</button>
     </view>
-</block>
-
-
-<view class="flex solid-bottom padding justify-around">
-    <button class="cu-btn line-blue round padding-sm margin-xs " bindtap="preSteps">上一题</button>
-    <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num == question.length}}">下一题</button>
-    <button class="cu-btn line-green round padding-sm margin-xs " bindtap="nextSteps" hidden="{{num != question.length}}">查看成绩</button>
-</view>
+</form>
